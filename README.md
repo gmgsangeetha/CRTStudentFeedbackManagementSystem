@@ -31,12 +31,13 @@ A **web-based platform** designed to efficiently collect and manage student feed
 
 ## Live Application
 
-**Admin URL:** [Admin Login](http://studentfeedback.alwaysdata.net/login.jsp)  
-**Student URL:** [Student Login](http://studentfeedback.alwaysdata.net/)
+**Admin URL:** [http://studentfeedback.alwaysdata.net/login.jsp](http://studentfeedback.alwaysdata.net/login.jsp)  
+**Student URL:** [http://studentfeedback.alwaysdata.net/](http://studentfeedback.alwaysdata.net/)
 
 ---
 
 ## Project Structure
+```
 CRTStudentFeedbackManagementSystem/
 │
 ├─ src/main/java/controller/
@@ -66,7 +67,8 @@ CRTStudentFeedbackManagementSystem/
 │ └─ thank_you.jsp
 │
 ├─ .gitignore
-└─ README.md   
+└─ README.md
+```
 
 ---
 
