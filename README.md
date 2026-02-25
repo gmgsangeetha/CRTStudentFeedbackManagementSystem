@@ -14,7 +14,7 @@ A **web-based platform** designed to efficiently collect and manage student feed
 - Change admin password securely
 
 ### Student
-- Login with roll number and password
+- Login with roll number and password set by the admin
 - Auto-filled feedback form with roll number
 - Submit feedback **once only** to prevent duplicates
 
@@ -32,7 +32,10 @@ A **web-based platform** designed to efficiently collect and manage student feed
 ## Live Application
 
 **Admin URL:** [http://studentfeedback.alwaysdata.net/login.jsp](http://studentfeedback.alwaysdata.net/login.jsp)  
+> Requires valid admin credentials. Contact the project owner for access.
+
 **Student URL:** [http://studentfeedback.alwaysdata.net/](http://studentfeedback.alwaysdata.net/)
+> Requires registered student credentials. Contact the project owner for access.
 
 ---
 
