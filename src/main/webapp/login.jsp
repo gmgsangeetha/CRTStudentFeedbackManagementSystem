@@ -94,7 +94,6 @@
     <div class="login-container">
         <h1>Admin Login</h1>
         <form action="<%= request.getContextPath() %>/AdminLoginServlet" method="post">
-        
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="text" id="email" name="email" required>
@@ -109,6 +108,5 @@
         </form>
     </div>
 </div>
-
 </body>
 </html>
