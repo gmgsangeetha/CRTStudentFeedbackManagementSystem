@@ -70,7 +70,7 @@
 <body>
     <div class="login-container">
         <h1>Student Login</h1>
-        <form action="/StudentLoginServlet" method="post">
+        <form action="${pageContext.request.contextPath}/StudentLoginServlet" method="post">
             <div class="form-group">
                 <label for="roll_no">Roll Number:</label>
                 <input type="text" id="roll_no" name="roll_no" required>
