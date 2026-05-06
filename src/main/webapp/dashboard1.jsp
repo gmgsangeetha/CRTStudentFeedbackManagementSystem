@@ -148,7 +148,7 @@
 
 <div class="dashboard-container">
 
-<%  // Message block
+<%  
     String message = (String) session.getAttribute("message");
     if (message != null) {
 %>
@@ -162,7 +162,6 @@
     }
 %>
 
-<!-- Top Navbar Links -->
 <div class="top-links">
     <a href="change-password.jsp">Change Password</a>
     <a href="<%= request.getContextPath() %>/LogoutServlet">Logout</a>
@@ -173,10 +172,8 @@
     <h3>Add Student</h3>
     <label for="add_roll_no">Roll No:</label>
     <input type="text" id="add_roll_no" name="roll_no" required>
-
     <label for="add_password">Password:</label>
     <input type="text" id="add_password" name="password" required>
-
     <input type="submit" value="Add Student">
 </form>
 
@@ -185,7 +182,6 @@
     <h3>Delete Student</h3>
     <label for="delete_roll_no">Roll No:</label>
     <input type="text" id="delete_roll_no" name="roll_no" required>
-
     <input type="submit" value="Delete Student">
 </form>
 
@@ -197,38 +193,31 @@
 <!-- View Feedback with Filters -->
 <form action="<%=request.getContextPath()%>/ViewFeedbackServlet" method="get">
     <h3>Filter Feedback</h3>
-
     <label for="trainer_name">Trainer Name:</label>
     <input type="text" id="trainer_name" name="trainer_name">
-
     <label for="trainer_rating">Trainer Rating:</label>
     <select id="trainer_rating" name="trainer_rating">
         <option value="">All</option>
         <option>1</option><option>2</option><option>3</option>
         <option>4</option><option>5</option>
     </select>
-
     <label for="training_rating">Training Rating:</label>
     <select id="training_rating" name="training_rating">
         <option value="">All</option>
         <option>1</option><option>2</option><option>3</option>
         <option>4</option><option>5</option>
     </select>
-
     <label for="created_at">Date:</label>
     <input type="date" id="created_at" name="created_at">
-
     <label for="filter_roll_no">Student Roll Number:</label>
     <input type="text" id="filter_roll_no" name="roll_no">
-
     <input type="submit" value="Filter">
 </form>
 
 <%
-    // Fetch is_allowed
+    // Fetch current feedback access status
     int status = 0;
     try {
-        
     	Connection con = DBConnection.getConnection();
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery("SELECT is_allowed FROM feedback_access WHERE id=1");
@@ -247,7 +236,6 @@
     <span class="slider"></span>
 </label>
 <span class="status-label" id="statusText"><%= (status == 1 ? "Allow" : "Prohibit") %></span>
-
 </div>
 
 <script>
@@ -255,13 +243,11 @@ function updateAccess() {
     const checkbox = document.getElementById('toggle');
     const newStatus = checkbox.checked ? "Allow" : "Prohibit";
     document.getElementById('statusText').textContent = newStatus;
-
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "<%=request.getContextPath()%>/ToggleFeedbackAccessServlet", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("action=" + encodeURIComponent(newStatus));
 }
 </script>
-
 </body>
 </html>
