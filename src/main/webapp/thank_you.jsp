@@ -27,7 +27,7 @@
 </head>
 <body>
     <div class="box">
-        <h2>✅ Your feedback has been recorded.</h2>
+        <h2>Your feedback has been recorded.</h2>
         <p>Thank you for your response!</p>
     </div>
 </body>
