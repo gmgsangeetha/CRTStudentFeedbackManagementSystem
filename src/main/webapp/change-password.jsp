@@ -94,8 +94,6 @@
 
     <input type="submit" value="Update Password">
 </form>
-        
-
         <% String message = (String) request.getAttribute("message");
            if (message != null) { %>
             <div class="message"><%= message %></div>
