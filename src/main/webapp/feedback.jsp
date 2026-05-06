@@ -69,23 +69,17 @@
     </style>
 </head>
 <body>
-
 <div class="container">
     <h2>CRT Trainer Feedback Form</h2>
     <form action="/SubmitFeedbackServlet" method="post">
-
         <label for="email">Email ID:</label>
         <input type="email" name="email" id="email" required>
-
         <label for="name">Name:</label>
         <input type="text" name="name" id="name" required>
-
-<label for="rollno">Roll Number:</label>
-<input type="text" name="rollno" id="rollno" value="<%= session.getAttribute("roll_no") %>" readonly style="background-color: #f0f0f0;">
-
+        <label for="rollno">Roll Number:</label>
+        <input type="text" name="rollno" id="rollno" value="<%= session.getAttribute("roll_no") %>" readonly style="background-color: #f0f0f0;">
         <label for="branch">Branch:</label>
         <input type="text" name="branch" id="branch" required>
-
         <label for="year">Year:</label>
         <select name="year" id="year" required>
             <option value="">--Select--</option>
@@ -94,10 +88,8 @@
             <option value="3rd Year">3rd Year</option>
             <option value="4th Year">4th Year</option>
         </select>
-
         <label for="trainer">Trainer Name:</label>
         <input type="text" name="trainer" id="trainer" required>
-
         <div class="rating-group">
             <label>Trainer Rating (out of 5):</label>
             <div class="radio-row">
@@ -108,7 +100,6 @@
                 <label><input type="radio" name="trainerRating" value="1"> 1</label>
             </div>
         </div>
-
         <div class="rating-group">
             <label>Rating for Training (out of 5):</label>
             <div class="radio-row">
@@ -133,6 +124,5 @@
 
     </form>
 </div>
-
 </body>
 </html>
