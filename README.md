@@ -4,6 +4,16 @@ A **web-based platform** designed to efficiently collect and manage student feed
 
 ---
 
+## Project Motivation
+
+There are many feedback management systems available, including proprietary and free trial tools. However, in our college, feedback collection was done using Google Forms, which had limitations in customization and management.
+
+During discussions with our mentor, we identified the need for a dedicated system tailored to institutional requirements. As a student, I aimed to understand and implement a complete web application involving backend, database, and frontend integration.
+
+This project helped me gain practical experience in full-stack web development, including request handling, session management, and database integration using a servlet-based architecture.
+
+---
+
 ## Features
 
 ### Admin
@@ -57,20 +67,18 @@ CRTStudentFeedbackManagementSystem/
 │ ├─ ViewStudentsServlet.java
 │ └─ package-info.java
 │
-├─ src/main/webapp/
-│ ├─ META-INF/MANIFEST.MF
-│ ├─ WEB-INF/lib/javax.servlet-api-4.0.1.jar
-│ ├─ WEB-INF/lib/mysql-connector-j-8.0.33.jar
-│ ├─ already_submitted.jsp
-│ ├─ change-password.jsp
-│ ├─ dashboard1.jsp
-│ ├─ feedback.jsp
-│ ├─ index.jsp
-│ ├─ login.jsp
-│ └─ thank_you.jsp
-│
-├─ .gitignore
-└─ README.md
+└─ src/main/webapp/
+  ├─ META-INF/MANIFEST.MF
+  ├─ WEB-INF/lib/javax.servlet-api-4.0.1.jar
+  ├─ WEB-INF/lib/mysql-connector-j-8.0.33.jar
+  ├─ already_submitted.jsp
+  ├─ change-password.jsp
+  ├─ dashboard1.jsp
+  ├─ feedback.jsp
+  ├─ index.jsp
+  ├─ login.jsp
+  └─ thank_you.jsp
+
 ```
 
 ---
@@ -91,9 +99,24 @@ CRTStudentFeedbackManagementSystem/
 
 ## Benefits
 - Prevents duplicate feedback submissions
-- Real-time admin feedback management
-- Auto-fills student info(roll number) in the feedback form for accuracy
 - Reliable feedback collection
+- Secure role-based access (Admin & Student)
+- Auto-fills student info(roll number) in the feedback form for accuracy
+- Real-time feedback control by admin  
+- Clean MVC-style servlet architecture  
+- Hosted and accessible online
+- Reduces manual effort in feedback collection
+- Ensures controlled and authenticated access 
+
+---
+
+## Future Scope
+
+- Adding data visualization dashboards (bar charts, pie charts) for feedback analysis  
+- Exporting feedback data into CSV/Excel format for reporting and analysis  
+- Improving bulk student management (add/update/delete multiple records at once)  
+- Implementing an automated feedback cycle reset (after 24 hours) to allow students to submit feedback for the next day without requiring manual deletion and re-entry of student records by the admin.
+- Adding analytics-based insights for trainers and training quality evaluation  
 
 ---
 
