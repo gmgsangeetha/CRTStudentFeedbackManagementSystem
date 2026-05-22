@@ -35,7 +35,7 @@ This project helped me gain practical experience in full-stack web development, 
 - **Backend:** Java Servlets, JSP  
 - **Database:** MySQL  
 - **Hosting:** AlwaysData  
-- **Development IDE:** Eclipse  
+- **Development IDE:** Eclipse IDE for Enterprise Java and Web Developers
 
 ---
 
