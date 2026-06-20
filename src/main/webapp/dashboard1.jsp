@@ -142,26 +142,39 @@
         font-weight: bold;
         vertical-align: middle;
     }
+    textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    resize: vertical;
+}
 </style>
 </head>
 <body>
 
 <div class="dashboard-container">
 
-<%  
-    String message = (String) session.getAttribute("message");
+<%
+    
+Object msgObj = session.getAttribute("message");
+String message = (msgObj != null) ? msgObj.toString() : null;
     if (message != null) {
 %>
-    <div style="text-align: center; margin: 10px 0 20px;">
-        <span style="color: green; font-size: 18px; font-weight: bold; background-color: #e0ffe0; padding: 10px 20px; border-radius: 8px; display: inline-block;">
-            <%= message %>
-        </span>
-    </div>
+
+<div id="msgBox" style="text-align:center; margin:10px 0 20px;">
+    <span style="color: green; font-size: 18px; font-weight: bold; background-color: #e0ffe0; padding: 10px 20px; border-radius: 8px; display: inline-block;">
+        <%= message %>
+    </span>
+</div>
+
 <%
         session.removeAttribute("message");
     }
 %>
-
+<!-- Top Navbar Links -->
 <div class="top-links">
     <a href="change-password.jsp">Change Password</a>
     <a href="<%= request.getContextPath() %>/LogoutServlet">Logout</a>
@@ -172,17 +185,32 @@
     <h3>Add Student</h3>
     <label for="add_roll_no">Roll No:</label>
     <input type="text" id="add_roll_no" name="roll_no" required>
+
     <label for="add_password">Password:</label>
     <input type="text" id="add_password" name="password" required>
+
     <input type="submit" value="Add Student">
 </form>
+<!-- Bulk Upload Button -->
+<form action="bulk-upload.jsp" method="get">
+    <input type="submit" value="Upload Bulk Students (CSV File)"
+           style="background-color:#007bff; color:white; font-weight:bold;">
+</form>
+<!-- Bulk Delete Students -->
+<form action="<%=request.getContextPath()%>/BulkDeleteStudentServlet" method="post">
 
-<!-- Delete Student Form -->
-<form action="<%=request.getContextPath()%>/DeleteStudentServlet" method="post">
-    <h3>Delete Student</h3>
-    <label for="delete_roll_no">Roll No:</label>
-    <input type="text" id="delete_roll_no" name="roll_no" required>
-    <input type="submit" value="Delete Student">
+    <h3>Bulk Delete Students</h3>
+
+    <textarea name="roll_numbers" rows="10" 
+        placeholder="Enter Roll Numbers (one per line):
+23NM1A0513
+23NM1A0554
+23NM1A0542
+23NM1A0934"></textarea>
+
+    <br><br>
+
+    <input type="submit" value="Delete Students">
 </form>
 
 <!-- View Students Button -->
@@ -193,31 +221,38 @@
 <!-- View Feedback with Filters -->
 <form action="<%=request.getContextPath()%>/ViewFeedbackServlet" method="get">
     <h3>Filter Feedback</h3>
+
     <label for="trainer_name">Trainer Name:</label>
     <input type="text" id="trainer_name" name="trainer_name">
+
     <label for="trainer_rating">Trainer Rating:</label>
     <select id="trainer_rating" name="trainer_rating">
         <option value="">All</option>
         <option>1</option><option>2</option><option>3</option>
         <option>4</option><option>5</option>
     </select>
+
     <label for="training_rating">Training Rating:</label>
     <select id="training_rating" name="training_rating">
         <option value="">All</option>
         <option>1</option><option>2</option><option>3</option>
         <option>4</option><option>5</option>
     </select>
+
     <label for="created_at">Date:</label>
     <input type="date" id="created_at" name="created_at">
+
     <label for="filter_roll_no">Student Roll Number:</label>
     <input type="text" id="filter_roll_no" name="roll_no">
+
     <input type="submit" value="Filter">
 </form>
 
 <%
-    // Fetch current feedback access status
+    // Fetch is_allowed
     int status = 0;
     try {
+        
     	Connection con = DBConnection.getConnection();
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery("SELECT is_allowed FROM feedback_access WHERE id=1");
@@ -236,6 +271,7 @@
     <span class="slider"></span>
 </label>
 <span class="status-label" id="statusText"><%= (status == 1 ? "Allow" : "Prohibit") %></span>
+
 </div>
 
 <script>
@@ -243,11 +279,20 @@ function updateAccess() {
     const checkbox = document.getElementById('toggle');
     const newStatus = checkbox.checked ? "Allow" : "Prohibit";
     document.getElementById('statusText').textContent = newStatus;
+
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "<%=request.getContextPath()%>/ToggleFeedbackAccessServlet", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("action=" + encodeURIComponent(newStatus));
 }
+</script>
+<script>
+    setTimeout(function () {
+        var msg = document.getElementById("msgBox");
+        if (msg) {
+            msg.style.display = "none";
+        }
+    }, 7000); // Set to 7 seconds
 </script>
 </body>
 </html>
