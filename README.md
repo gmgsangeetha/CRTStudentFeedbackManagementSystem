@@ -18,7 +18,7 @@ This project helped me gain practical experience in full-stack web development, 
 
 ### Admin
 - Secure login with email and password
-- Add, update, and delete student records
+- Add and delete bulk student records at a time
 - Enable or disable feedback form access
 - View feedback with filters (trainer, rating, roll number, submission date)
 - Change admin password securely
@@ -50,12 +50,14 @@ This project helped me gain practical experience in full-stack web development, 
 ---
 
 ## Project Structure
-```
+
+```text
 CRTStudentFeedbackManagementSystem/
 │
 ├─ src/main/java/controller/
 │ ├─ AddStudentServlet.java
 │ ├─ AdminLoginServlet.java
+│ ├─ BulkDeleteStudentServlet.java
 │ ├─ ChangeAdminPasswordServlet.java
 │ ├─ DBConnection.java
 │ ├─ DeleteStudentServlet.java
@@ -63,6 +65,7 @@ CRTStudentFeedbackManagementSystem/
 │ ├─ StudentLoginServlet.java
 │ ├─ SubmitFeedbackServlet.java
 │ ├─ ToggleFeedbackAccessServlet.java
+│ ├─ UploadStudentsServlet.java
 │ ├─ ViewFeedbackServlet.java
 │ ├─ ViewStudentsServlet.java
 │ └─ package-info.java
@@ -72,13 +75,13 @@ CRTStudentFeedbackManagementSystem/
   ├─ WEB-INF/lib/javax.servlet-api-4.0.1.jar
   ├─ WEB-INF/lib/mysql-connector-j-8.0.33.jar
   ├─ already_submitted.jsp
+  ├─ bulk-upload.jsp
   ├─ change-password.jsp
   ├─ dashboard1.jsp
   ├─ feedback.jsp
   ├─ index.jsp
   ├─ login.jsp
   └─ thank_you.jsp
-
 ```
 
 ---
@@ -102,6 +105,7 @@ CRTStudentFeedbackManagementSystem/
 - Reliable feedback collection
 - Secure role-based access (Admin & Student)
 - Auto-fills student info(roll number) in the feedback form for accuracy
+- Once the feedback is submitted for today,on the next day the student will be able to fill the feedback form again, as the automatic reset feature is added.
 - Real-time feedback control by admin  
 - Clean MVC-style servlet architecture  
 - Hosted and accessible online
@@ -114,8 +118,6 @@ CRTStudentFeedbackManagementSystem/
 
 - Adding data visualization dashboards (bar charts, pie charts) for feedback analysis  
 - Exporting feedback data into CSV/Excel format for reporting and analysis  
-- Improving bulk student management (add/update/delete multiple records at once)  
-- Implementing an automated feedback cycle reset (after 24 hours) to allow students to submit feedback for the next day without requiring manual deletion and re-entry of student records by the admin.
 - Adding analytics-based insights for trainers and training quality evaluation  
 
 ---
