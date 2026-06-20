@@ -1,5 +1,36 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*, controller.DBConnection" %>
+<%
+    // 1. Session Protection
+    if (session == null || session.getAttribute("roll_no") == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+
+    String rollNo = (String) session.getAttribute("roll_no");
+    boolean alreadySubmitted = false;
+
+    // 2. Instant Database Check before loading the page layout
+    try {
+        Connection con = DBConnection.getConnection();
+        String checkSQL = "SELECT COUNT(*) FROM feedbacks WHERE roll_no = ? AND DATE(created_at) = CURDATE()";
+        PreparedStatement checkStmt = con.prepareStatement(checkSQL);
+        checkStmt.setString(1, rollNo);
+        ResultSet rs = checkStmt.executeQuery();
+        
+        if (rs.next() && rs.getInt(1) > 0) {
+            alreadySubmitted = true;
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    // 3. Immediate Block Redirect
+    if (alreadySubmitted) {
+        response.sendRedirect("already_submitted.jsp");
+        return; 
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,17 +100,23 @@
     </style>
 </head>
 <body>
+
 <div class="container">
     <h2>CRT Trainer Feedback Form</h2>
-    <form action="/SubmitFeedbackServlet" method="post">
+    <form action="SubmitFeedbackServlet" method="post">
+
         <label for="email">Email ID:</label>
         <input type="email" name="email" id="email" required>
+
         <label for="name">Name:</label>
         <input type="text" name="name" id="name" required>
+
         <label for="rollno">Roll Number:</label>
-        <input type="text" name="rollno" id="rollno" value="<%= session.getAttribute("roll_no") %>" readonly style="background-color: #f0f0f0;">
+        <input type="text" name="rollno" id="rollno" value="<%= rollNo %>" readonly style="background-color: #f0f0f0;">
+
         <label for="branch">Branch:</label>
         <input type="text" name="branch" id="branch" required>
+
         <label for="year">Year:</label>
         <select name="year" id="year" required>
             <option value="">--Select--</option>
@@ -88,8 +125,10 @@
             <option value="3rd Year">3rd Year</option>
             <option value="4th Year">4th Year</option>
         </select>
+
         <label for="trainer">Trainer Name:</label>
         <input type="text" name="trainer" id="trainer" required>
+
         <div class="rating-group">
             <label>Trainer Rating (out of 5):</label>
             <div class="radio-row">
@@ -100,6 +139,7 @@
                 <label><input type="radio" name="trainerRating" value="1"> 1</label>
             </div>
         </div>
+
         <div class="rating-group">
             <label>Rating for Training (out of 5):</label>
             <div class="radio-row">
@@ -124,5 +164,6 @@
 
     </form>
 </div>
+
 </body>
 </html>
