@@ -88,15 +88,36 @@ CRTStudentFeedbackManagementSystem/
 
 ## How It Works
 
-**Admin Workflow:**
-1. Log in with admin credentials.
-2. Manage students and feedback access.
-3. View and analyze submitted feedback.
+### Admin Workflow:
 
-**Student Workflow:**
+1. Log in with admin credentials.
+2. Add a single student account by entering the Roll Number and Password.
+3. Bulk upload multiple student accounts using a CSV file.
+
+   * Create an Excel sheet with:
+
+     ```text
+     RollNo,Password
+     23NM1A0513,pass123
+     23NM1A0554,pass456
+     ```
+   * In Excel, click **File → Save As → CSV (Comma delimited) (*.csv)**.
+   * Upload the generated CSV file through the **Bulk Upload Students** option.
+4. Delete student accounts using the Delete Students option:
+
+   * Enter a single roll number to delete one student.
+   * Enter multiple roll numbers (one per line) to delete multiple students at once.
+5. Enable or disable feedback submission using a toggle switch. When feedback access is disabled, students cannot submit feedback and are shown a message    indicating that the feedback session is currently closed.
+6. View registered students.
+7. Filter, view, and analyze submitted feedback.
+8. Change admin password and manage system access.
+
+### Student Workflow:
+
 1. Log in with roll number and password.
 2. Fill out the feedback form (auto-filled roll number).
 3. Submit feedback once.
+4. Receive a confirmation after successful submission.
 
 ---
 
